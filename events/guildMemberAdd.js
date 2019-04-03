@@ -4,23 +4,7 @@ const fs = require("fs");
 let invite = " "
 
 module.exports = async (client,member,invites) => {
-    let lockdown = config.lockdown[member.guild.id]
     const existing = invites[member.guild.id]
-    //let reason = " nothing"
-
-    if(lockdown){
-        const message = new Discord.RichEmbed()
-        .setTitle("You have been kicked!")
-        .setDescription("This server is currently under lockdown due to raids, you will recieve a DM with the invite once the raid is over.")
-        .setFooter(client.user.username,client.user.avatarURL)
-        .setColor(0x48cc92)
-        await member.send(message)
-        await member.kick().catch(console.error);
-
-        fs.writeFile("../config.json", JSON.stringify(config), (err)=>{
-            console.log(err)
-        });
-    }
 
     if(!member.guild.me.hasPermission("MANAGE_GUILD")) return
     

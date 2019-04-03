@@ -14,18 +14,6 @@ module.exports = async (client,invites) => {
                         .catch(console.error);
                 }    
         }    
-        await fetchGuildInvites();
-
-        client.guilds.forEach(async guild => {
-                if(config.lockdown[guild.id] === null || config.lockdown[guild.id] === undefined){
-                        const guildID = guild.id
-                        const value = {[guildID] : false}
-                        Object.assign(config.lockdown,value)
-                }
-        })
-        fs.writeFile("config.json",JSON.stringify(config), (err)=>{
-                console.error
-        })
-        
+        await fetchGuildInvites();        
 
 }
